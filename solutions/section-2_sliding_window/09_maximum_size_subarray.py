@@ -13,8 +13,7 @@ def solution(nums: list[int], k: int) -> float:
     max_average = current_sum / k
 
     for right in range(k, len(nums)):
-        current_sum += nums[right]
-        current_sum -= nums[left]
+        current_sum = current_sum + nums[right] - nums[left]
         max_average = max(max_average, current_sum / k)
         left += 1
         right += 1
