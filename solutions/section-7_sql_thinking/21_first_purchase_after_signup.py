@@ -17,6 +17,14 @@ import sqlite3
 
 def solution(conn: sqlite3.Connection) -> list[tuple[int, str, str]]:
     query = """
+        SELECT u.id, u.signup_date, o.order_date
+        FROM users u
+        JOIN orders o ON o.order_date > u.signup_date
+        WHERE o.order_date = (
+            SELECT MIN(order_date)
+            FROM orders
+            WHERE order_date > u.signup_date
+        )
     """
     cursor = conn.cursor()
     cursor.execute(query)
