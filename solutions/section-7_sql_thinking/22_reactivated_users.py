@@ -30,7 +30,7 @@ def solution(conn: sqlite3.Connection) -> list[tuple[int, str, str]]:
             FROM base
         )
         SELECT
-            strftime('%Y-%m', order_date) AS month,
+            strftime('%m', order_date) AS month,
             COUNT(*) AS reactivated_users
         FROM groups
         WHERE reactivated_condition = 1
